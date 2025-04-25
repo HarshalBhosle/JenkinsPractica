@@ -1,24 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
         stage('Build') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'pm2 start app.js'
+                bat 'pm2 start app.js'
             }
         }
     }
