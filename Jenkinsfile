@@ -1,15 +1,26 @@
-node {
-    stage('Checkout') {
-        checkout scm
-    }
-    stage('Install Dependencies') {
-        sh 'npm install'
-    }
-    stage('Build') {
-        sh 'npm run build'
-    }
-    stage('Deploy') {
-        sh 'pm2 start app.js'
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'pm2 start app.js'
+            }
+        }
     }
 }
 /* for declarative
